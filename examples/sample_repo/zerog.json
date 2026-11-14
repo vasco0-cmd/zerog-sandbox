@@ -1,0 +1,21 @@
+{
+  "project_name": "Sample-Secure-Service",
+  "test_command": "py -c \"import sys, unittest; sys.path.insert(0, '.'); loader = unittest.TestLoader(); suite = loader.discover('tests'); runner = unittest.TextTestRunner(verbosity=2); res = runner.run(suite); sys.exit(0 if res.wasSuccessful() else 1)\"",
+  "timeout_seconds": 15,
+  "critical_files": [
+    "auth.py"
+  ],
+  "weights": {
+    "files_changed": 5.0,
+    "lines_added": 0.2,
+    "lines_deleted": 0.3,
+    "critical_file_hit": 25.0,
+    "broken_test_penalty": 60.0,
+    "execution_time_factor": 0.5,
+    "dependency_centrality_factor": 5.0
+  },
+  "score_thresholds": {
+    "light_max": 20.0,
+    "medium_max": 50.0
+  }
+}

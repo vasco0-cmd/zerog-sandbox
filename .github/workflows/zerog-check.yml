@@ -1,0 +1,31 @@
+name: ZeroG Blast-Radius Verification
+
+on:
+  pull_request:
+    branches: [ main, master, develop ]
+  push:
+    branches: [ main ]
+
+jobs:
+  zerog-check:
+    name: Blast-Radius Impact Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Run ZeroG Blast-Radius Verification
+        run: |
+          python -m zerog_sandbox.cli simulate --repo . --threshold 60.0
